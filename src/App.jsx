@@ -4,6 +4,7 @@ import Logo from "./components/Logo/Logo";
 import Controls from "./layouts/Controls/Controls";
 import Info from "./components/Info/Info";
 import RaffleContainer from "./layouts/RaffleContainer/RaffleContainer";
+import Footer from "./components/Footer/Footer";
 import "./App.css";
 
 const App = () => {
@@ -29,6 +30,7 @@ const App = () => {
         reset={reset}
         setCountWinners={setCountWinners}
       />
+      <Footer />
     </div>
   );
 };
