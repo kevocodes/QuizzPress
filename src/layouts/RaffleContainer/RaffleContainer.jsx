@@ -1,23 +1,30 @@
-import { useState,useEffect } from "react";
-import { container } from "./RaffleContainer.module.css"
+import { useState, useEffect } from "react";
+import { container } from "./RaffleContainer.module.css";
 import { useConfetti } from "../../hooks/useConfetti";
-import Button from "../../components/Button/Button"
+import Button from "../../components/Button/Button";
 
-const RaffleContainer = ({buttonNumbers, winnersNumber, reset}) => {
+const RaffleContainer = ({
+  buttonNumbers,
+  winnersNumber,
+  reset,
+  setCountWinners
+}) => {
   const [buttons, setButtons] = useState([]);
   const { confetti } = useConfetti();
 
   useEffect(() => {
-    const newButtons = Array(buttonNumbers).fill().map((_, i) => ({
-      number: i + 1,
-      isWinner: false
-    }));
+    const newButtons = Array(buttonNumbers)
+      .fill()
+      .map((_, i) => ({
+        number: i + 1,
+        isWinner: false,
+      }));
 
     // Randomly select the winners
     for (let i = 0; i < winnersNumber; i++) {
       const randomIndex = Math.floor(Math.random() * buttonNumbers);
-      
-      if(newButtons[randomIndex].isWinner) {
+
+      if (newButtons[randomIndex].isWinner) {
         i--;
         continue;
       }
@@ -26,7 +33,8 @@ const RaffleContainer = ({buttonNumbers, winnersNumber, reset}) => {
     }
 
     setButtons(newButtons);
-  }, [buttonNumbers, winnersNumber, reset]);
+    setCountWinners(0);
+  }, [buttonNumbers, winnersNumber, reset, setCountWinners]);
 
   const handleButtonClick = (id) => {
     const newButtons = [...buttons];
@@ -37,10 +45,16 @@ const RaffleContainer = ({buttonNumbers, winnersNumber, reset}) => {
   return (
     <div className={container}>
       {buttons.map((button, i) => (
-        <Button key={i} content={button} checkPressed={handleButtonClick} confetti={confetti}/>
+        <Button
+          key={i}
+          content={button}
+          checkPressed={handleButtonClick}
+          confetti={confetti}
+          setCountWinners={setCountWinners}
+        />
       ))}
     </div>
-  )
-}
+  );
+};
 
-export default RaffleContainer
+export default RaffleContainer;

@@ -24,7 +24,7 @@ export const getButtons = async (settings) => {
 
 export const getWinners = async (settings) => {
   return Swal.fire({
-    title: "¿Cuántos ganadores quieres?",
+    title: "¿Cuántos seleccionados quieres?",
     input: "number",
     showCancelButton: true,
     confirmButtonText: "Aceptar",

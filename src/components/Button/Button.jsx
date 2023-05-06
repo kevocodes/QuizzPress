@@ -2,7 +2,7 @@ import Swal from "sweetalert2";
 import { button } from "./Button.module.css";
 import { ReactComponent as Star } from '../../assets/star.svg'
 
-const Button = ({ content, checkPressed, confetti }) => {
+const Button = ({ content, checkPressed, confetti, setCountWinners }) => {
   const handleClick = () => {
     //Mark the button as pressed
     checkPressed(content.number - 1);
@@ -20,6 +20,8 @@ const Button = ({ content, checkPressed, confetti }) => {
       });
       // Show the confetti
       confetti.addConfetti();
+      // Increase the winners count
+      setCountWinners((prev) => prev + 1);
     }
   };
 

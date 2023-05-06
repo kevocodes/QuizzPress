@@ -12,11 +12,12 @@ const App = () => {
     buttonNumbers: 10,
     winnersNumber: 5,
   });
+  const [countWinners, setCountWinners] = useState(0);
 
   return (
     <div className="main">
       <Logo />
-      <Info settings={settings}/>
+      <Info settings={settings} countWinners={countWinners} />
       <Controls
         setSettings={setSettings}
         settings={settings}
@@ -26,6 +27,7 @@ const App = () => {
         buttonNumbers={settings.buttonNumbers}
         winnersNumber={settings.winnersNumber}
         reset={reset}
+        setCountWinners={setCountWinners}
       />
     </div>
   );
