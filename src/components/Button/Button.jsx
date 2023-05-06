@@ -1,5 +1,6 @@
 import Swal from "sweetalert2";
 import { button } from "./Button.module.css";
+import { ReactComponent as Star } from '../../assets/star.svg'
 
 const Button = ({ content, checkPressed, confetti }) => {
   const handleClick = () => {
@@ -25,11 +26,11 @@ const Button = ({ content, checkPressed, confetti }) => {
   return (
     <div onClick={handleClick}>
       <button
-        className={`${button}`}
+        className={button}
         disabled={content.revealed}
       >
+        {(content.isWinner && content.revealed) && <Star fill={"#666666"} width="16px" height="16px"/>}
         <h2>{content.number}</h2>
-        {content.isWinner && <span>Winner!</span>}
       </button>
     </div>
   );
