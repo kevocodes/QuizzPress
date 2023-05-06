@@ -3,7 +3,7 @@ import { container } from "./RaffleContainer.module.css"
 import { useConfetti } from "../../hooks/useConfetti";
 import Button from "../../components/Button/Button"
 
-const RaffleContainer = ({buttonNumbers, winnersNumber}) => {
+const RaffleContainer = ({buttonNumbers, winnersNumber, reset}) => {
   const [buttons, setButtons] = useState([]);
   const { confetti } = useConfetti();
 
@@ -26,7 +26,7 @@ const RaffleContainer = ({buttonNumbers, winnersNumber}) => {
     }
 
     setButtons(newButtons);
-  }, [buttonNumbers, winnersNumber]);
+  }, [buttonNumbers, winnersNumber, reset]);
 
   const handleButtonClick = (id) => {
     const newButtons = [...buttons];

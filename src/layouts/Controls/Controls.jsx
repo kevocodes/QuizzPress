@@ -1,7 +1,8 @@
 import Swal from 'sweetalert2'
 import ControlButton from '../../components/ControlButton/ControlButton'
 import { container } from './Controls.module.css' 
-const Controls = ({setSettings, settings}) => {
+
+const Controls = ({setSettings, settings, resetGame}) => {
   const changeButtonNumbers = async () => {
     const { value } = await Swal.fire({
       title: '¿Cuántos botones quieres?',
@@ -49,7 +50,7 @@ const Controls = ({setSettings, settings}) => {
         }
 
         if(value < 1) return 'Debes ingresar un número mayor a 0'
-        
+
         if (value > settings.buttonNumbers) {
           return 'No pueden haber más ganadores que botones'
         }
@@ -70,7 +71,7 @@ const Controls = ({setSettings, settings}) => {
     <div className={container}>
       <ControlButton text="# de botones" action={changeButtonNumbers}/>
       <ControlButton text="# de seleccionados" action={changeWinnersNumber}/>
-      <ControlButton text="Reiniciar"/>
+      <ControlButton text="Reiniciar" action={resetGame}/>
     </div>
   )
 }
