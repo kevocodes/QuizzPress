@@ -1,6 +1,6 @@
 import Swal from "sweetalert2";
 import { button } from "./Button.module.css";
-import { ReactComponent as Star } from '../../assets/star.svg'
+import { Icon } from "@iconify/react";
 
 const Button = ({ content, checkPressed, confetti, setCountWinners }) => {
   const handleClick = () => {
@@ -11,7 +11,7 @@ const Button = ({ content, checkPressed, confetti, setCountWinners }) => {
       // Show the winner message
       Swal.fire({
         title: "¡Haz sido seleccionado/a!",
-        text: "Es hora de responder",
+        text: "Es hora de participar",
         icon: "success",
         confirmButtonText: "Aceptar",
         confirmButtonColor: "#028fcc",
@@ -27,11 +27,15 @@ const Button = ({ content, checkPressed, confetti, setCountWinners }) => {
 
   return (
     <div onClick={handleClick}>
-      <button
-        className={button}
-        disabled={content.revealed}
-      >
-        {(content.isWinner && content.revealed) && <Star fill={"#666666"} width="16px" height="16px"/>}
+      <button className={button} disabled={content.revealed}>
+        {content.isWinner && content.revealed && (
+          <Icon
+            icon="material-symbols:star-rounded"
+            fill={"#666666"}
+            width="16px"
+            height="16px"
+          />
+        )}
         <h2>{content.number}</h2>
       </button>
     </div>
